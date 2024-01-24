@@ -117,6 +117,7 @@
 		a.download = 'wanted.jpg';
 		document.body.appendChild(a);
 		a.click();
+		alert('Image download started!');
 	};
 
 	onMount(redraw);
