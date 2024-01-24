@@ -1,11 +1,11 @@
 @font-face {
     font-family: 'Nashville';
     font-weight: 400;
-    src: url('/fonts/Nashville.ttf') format('truetype');
+    src: url('/fonts/Nashville.woff') format('woff');
 }
 
 @font-face {
     font-family: 'Freshman';
     font-weight: 400;
-    src: url('/fonts/Freshman.ttf') format('truetype');
+    src: url('/fonts/Freshman.woff') format('woff');
 }
