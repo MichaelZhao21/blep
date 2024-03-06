@@ -1,0 +1,36 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Judge {
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  code          String    @unique
+  name          String
+  currentNumber Int       @default(-1)
+  isRanking     Boolean   @default(false)
+  done          Boolean   @default(false)
+  ratings       Rating[]
+  rankings      Int[]
+}
+
+model Project {
+  id     String @id @default(auto()) @map("_id") @db.ObjectId
+  number Int    @unique
+  seen   Int
+}
+
+type Rating {
+  number        Int
+  score         Int
+}
