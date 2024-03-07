@@ -10,6 +10,7 @@ export const POST: RequestHandler = async ({ request }) => {
 			name,
 			code,
 			rankings: [],
+			ratings: [],
 		},
 	});
 

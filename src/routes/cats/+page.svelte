@@ -28,7 +28,7 @@
 		}
 
 		// Check if project is valid
-		if (!data.project) {
+		if (data.project === null || data.project === undefined) {
 			goto('/cats/sad?error=' + data.error);
 			return;
 		}
