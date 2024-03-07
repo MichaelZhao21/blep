@@ -25,7 +25,7 @@ export const POST: RequestHandler = async ({ request }) => {
 			data: {
 				rankings: ranking.map((r: DropItem) => r.id),
 				isRanking: false,
-				done: ranking.length >= 30 ? true : false,
+				done: judge.ratings.length >= 30 ? true : false,
 				currentNumber: -1,
 			},
 		});
