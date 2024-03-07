@@ -83,7 +83,7 @@
 	<p>
 		After viewing the cat, you will be asked to place it in the ranking with other cats. (On the
 		second page). You may change your ranking at any time after viewing a cat. Please go through 30
-		cats to complete judging, ranking cats between each viewing.
+		cats to complete judging, ranking cats between each viewing. This should take only 10 minutes!
 	</p>
 	{#if number !== -1}
 		<h2 style="margin-bottom: 0.5rem;">Please Rate the Cat Art</h2>
