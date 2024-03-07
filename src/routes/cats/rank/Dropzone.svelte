@@ -4,6 +4,7 @@
 
 	export let items: DropItem[] = [];
 	export let code = '';
+	export let limit = 999999;
 	const flipDurationMs = 200;
 
 	let preview = -1;
@@ -39,7 +40,7 @@
 </script>
 
 <section
-	use:dndzone={{ items, flipDurationMs }}
+	use:dndzone={{ items, flipDurationMs, dropFromOthersDisabled: items.length >= limit }}
 	on:consider={handleSort}
 	on:finalize={handleSort}
 	class="zone"
