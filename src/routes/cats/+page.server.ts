@@ -35,7 +35,7 @@ export const load = (async ({ url }) => {
     if (judge.done) {
         return {
             project: null,
-            error: 'You have already ranked all projects assigned to you. Thank you for your help!',
+			error: "done",
         };
     }
 

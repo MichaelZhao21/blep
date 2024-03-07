@@ -12,6 +12,7 @@
 	let rating = 1;
 	let numSeen = 0;
 	let name = '';
+	let done = false;
 
 	// Checks to make on load
 	const onload = () => {
@@ -20,6 +21,12 @@
 			goto(
 				'/cats/sad?error=No code provided. You must have a valid code to access the cat page. Please contact an admin for access',
 			);
+			return;
+		}
+
+		// Check if judge is done
+		if (data.error && data.error === 'done') {
+			done = true;
 			return;
 		}
 
@@ -93,6 +100,13 @@
 		<p style="margin-bottom: 0;">Rating: {rating}</p>
 		<input bind:value={rating} type="range" min="1" max="10" step="1" /><br />
 		<button on:click={submit} class="butt">Submit</button>
+	{:else if done}
+		<h2>❤️ You are done! ❤️</h2>
+		<p>
+			Thank you for helping out judge some cat art! Unfortunately, you won't be given any more cats.
+			However, you can still view your rankings and modify your rankings/scores if you would like.
+		</p>
+		<a class="butt" href={`/cats/rank?code=${code}`}>View your rankings</a>
 	{:else}
 		<p>Loading...</p>
 	{/if}
@@ -106,5 +120,6 @@
 
 	.butt {
 		margin-top: 1rem;
+		margin-bottom: 1rem;
 	}
 </style>

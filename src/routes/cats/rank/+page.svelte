@@ -106,6 +106,3 @@
 		<p>Loading...</p>
 	{/if}
 </Container>
-
-<style>
-</style>
