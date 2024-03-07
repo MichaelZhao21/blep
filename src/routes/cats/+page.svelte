@@ -10,6 +10,8 @@
 	const code = $page.url.searchParams.get('code');
 	let number = -1;
 	let rating = 1;
+	let numSeen = 0;
+	let name = "";
 
 	// Checks to make on load
 	const onload = () => {
@@ -34,6 +36,8 @@
 		}
 
 		number = data.project;
+		numSeen = data.numSeen ?? 0;
+		name = data.judgeName ?? "";
 	};
 
 	if (browser) {
@@ -75,6 +79,7 @@
 	</p>
 	{#if number !== -1}
 		<h2>Please Rate the Cat Art</h2>
+		<p>Hi {name}! You have seen {numSeen}/30 cats :3</p>
 		<img
 			src={`https://cdn.michaelzhao.xyz/cats/photos/${number}.png`}
 			alt={'cat image number ' + number}

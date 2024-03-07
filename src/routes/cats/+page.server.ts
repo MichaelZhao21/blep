@@ -51,6 +51,8 @@ export const load = (async ({ url }) => {
 	if (judge.currentNumber !== -1) {
 		return {
 			project: judge.currentNumber,
+			numSeen: judge.ratings.length,
+			judgeName: judge.name,
 		};
 	}
 
@@ -119,6 +121,8 @@ export const load = (async ({ url }) => {
 
 		return {
 			project: nextProj,
+			numSeen: judge.ratings.length,
+			judgeName: judge.name,
 		};
 	});
 }) satisfies PageServerLoad;
