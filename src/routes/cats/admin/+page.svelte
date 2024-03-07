@@ -1,7 +1,9 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
 	import { goto } from '$app/navigation';
+	import type { Judge } from '@prisma/client';
 	import type { PageData } from './$types';
+	import JudgeDisplay from './JudgeDisplay.svelte';
 
 	export let data: PageData;
 
@@ -10,6 +12,7 @@
 	let name = '';
 	let code = '';
 	let loaded = false;
+	let judges: Judge[] = [];
 
 	const submitAddProjects = async () => {
 		const res = await fetch('/cats/admin/projects', {
@@ -40,6 +43,7 @@
 			console.log('Judge added');
 			const data = await res.json();
 			code = data.code;
+			judges.push(newJudge(name, code));
 		} else {
 			console.error('Failed to add judge');
 		}
@@ -48,8 +52,25 @@
 	if (browser && data.error) {
 		goto(`/cats/sad?error=You must have a valid password to access the admin page`);
 	} else if (browser) {
+		// Sort judges by length of ratings
+		judges = data.judges?.sort((a, b) => b.ratings.length - a.ratings.length) ?? [];
 		loaded = true;
 	}
+
+	const newJudge = (name: string, code: string) => {
+		const emptyArr: { number: number; score: number }[] = [];
+		const numArr: number[] = [];
+		return {
+			id: '',
+			name: name,
+			code: code,
+			ratings: emptyArr,
+			rankings: numArr,
+			currentNumber: -1,
+			done: false,
+			isRanking: false,
+		};
+	};
 </script>
 
 {#if loaded}
@@ -78,11 +99,13 @@
 		<button on:click={submitAddName}>Add Judge</button>
 
 		{#if code}
-			<p>Last Judge Added: {code}</p>
+			<p><span style="font-weight: bold">Last Judge Added</span>: {name} ({code})</p>
 			<a href={`https://blep.mikz.dev/cats?code=${code}`}>
 				{`https://blep.mikz.dev/cats?code=${code}`}
 			</a>
 		{/if}
+
+		<JudgeDisplay bind:judges />
 	</div>
 {:else}
 	<p>Loading...</p>
