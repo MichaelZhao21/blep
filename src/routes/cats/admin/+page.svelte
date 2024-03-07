@@ -43,7 +43,6 @@
 			console.log('Judge added');
 			const data = await res.json();
 			code = data.code;
-			judges.push(newJudge(name, code));
 		} else {
 			console.error('Failed to add judge');
 		}
@@ -56,21 +55,6 @@
 		judges = data.judges?.sort((a, b) => b.ratings.length - a.ratings.length) ?? [];
 		loaded = true;
 	}
-
-	const newJudge = (name: string, code: string) => {
-		const emptyArr: { number: number; score: number }[] = [];
-		const numArr: number[] = [];
-		return {
-			id: '',
-			name: name,
-			code: code,
-			ratings: emptyArr,
-			rankings: numArr,
-			currentNumber: -1,
-			done: false,
-			isRanking: false,
-		};
-	};
 </script>
 
 {#if loaded}
