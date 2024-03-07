@@ -11,7 +11,7 @@
 	let number = -1;
 	let rating = 1;
 	let numSeen = 0;
-	let name = "";
+	let name = '';
 
 	// Checks to make on load
 	const onload = () => {
@@ -37,7 +37,7 @@
 
 		number = data.project;
 		numSeen = data.numSeen ?? 0;
-		name = data.judgeName ?? "";
+		name = data.judgeName ?? '';
 	};
 
 	if (browser) {
@@ -75,11 +75,14 @@
 	</p>
 	<p>
 		After viewing the cat, you will be asked to place it in the ranking with other cats. (On the
-		second page). You may change your ranking at any time after viewing a cat.
+		second page). You may change your ranking at any time after viewing a cat. Please go through 30
+		cats to complete judging, ranking cats between each viewing.
 	</p>
 	{#if number !== -1}
-		<h2>Please Rate the Cat Art</h2>
-		<p>Hi {name}! You have seen {numSeen}/30 cats :3</p>
+		<h2 style="margin-bottom: 0.5rem;">Please Rate the Cat Art</h2>
+		<p style="margin-top: 0; margin-bottom: 2rem;">
+			Hi {name}! You have seen {numSeen}/30 cats :3
+		</p>
 		<img
 			src={`https://cdn.michaelzhao.xyz/cats/photos/${number}.png`}
 			alt={'cat image number ' + number}

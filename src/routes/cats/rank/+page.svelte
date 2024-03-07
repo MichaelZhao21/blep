@@ -43,7 +43,8 @@
 			.map((p) => ({
 				id: p.number,
 				score: p.score,
-			})).reverse();
+			}))
+			.reverse();
 		ranked = ratings.map((r) => ({
 			id: r,
 			score: projects.find((p) => p.number === r)?.score ?? 0,
@@ -85,20 +86,21 @@
 	</p>
 	<p>
 		After viewing the cat, you will be asked to place it in the ranking with other cats. (On the
-		second page). You may change your ranking at any time after viewing a cat.
+		second page). You may change your ranking at any time after viewing a cat. Please go through 30
+		cats to complete judging, ranking cats between each viewing.
 	</p>
 
 	{#if projects.length > 0}
 		<h2>Please Rank the Cat Arts</h2>
 		<p style="margin-top: 0.25rem">
-			Please rank UP TO TEN cats. You can click on the cat to change the score or view it
-			again. Drag and drop anywhere else on the item to change its ordering.
+			Please rank UP TO TEN cats. You can click on the cat to change the score or view it again.
+			Drag and drop anywhere else on the item to change its ordering.
 		</p>
 
 		<h3>Ranking (order matters, limit 10)</h3>
-		<Dropzone bind:items={ranked} code={code ?? ""} limit={10} />
+		<Dropzone bind:items={ranked} code={code ?? ''} limit={10} />
 		<h3>Unranked (order does not matter)</h3>
-		<Dropzone bind:items={notRanked} code={code ?? ""} />
+		<Dropzone bind:items={notRanked} code={code ?? ''} />
 		<button on:click={submit} style="margin-bottom: 1rem;">Done Ranking</button>
 	{:else}
 		<p>Loading...</p>
