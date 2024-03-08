@@ -107,6 +107,7 @@
 			However, you can still view your rankings and modify your rankings/scores if you would like.
 		</p>
 		<a class="butt" href={`/cats/rank?code=${code}`}>View your rankings</a>
+		<a class="butt" href={`/cats/view`}>...or see ALL cats :3</a>
 	{:else}
 		<p>Loading...</p>
 	{/if}
